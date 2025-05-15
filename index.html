@@ -139,7 +139,7 @@
         progress[checkbox.id] = checkbox.checked;
       });
       localStorage.setItem('codeWithProgress', JSON.stringify(progress));
-      alert('Progress saved!'); // Show alert only when saving
+      alert('Progress saved!'); // Alert only on button click
     }
   
     function loadProgress() {
@@ -149,13 +149,13 @@
           const checkbox = document.getElementById(id);
           if (checkbox) {
             checkbox.checked = progress[id];
-            toggleCompleted(id); // Update styling without saving
+            toggleCompleted(id); // Update UI without saving
           }
         }
       }
     }
   
-    window.onload = loadProgress; // Load progress on startup without saving
+    window.onload = loadProgress; // Load progress without triggering save
   </script>
 </body>
 </html>
