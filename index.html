@@ -130,9 +130,8 @@
       } else {
         label.classList.remove('completed');
       }
-      saveProgress();
     }
-
+  
     function saveProgress() {
       const checkboxes = document.querySelectorAll('input[type="checkbox"]');
       const progress = {};
@@ -140,9 +139,9 @@
         progress[checkbox.id] = checkbox.checked;
       });
       localStorage.setItem('codeWithProgress', JSON.stringify(progress));
-      alert('Progress saved!');
+      alert('Progress saved!'); // Show alert only when saving
     }
-
+  
     function loadProgress() {
       const progress = JSON.parse(localStorage.getItem('codeWithProgress'));
       if (progress) {
@@ -150,13 +149,13 @@
           const checkbox = document.getElementById(id);
           if (checkbox) {
             checkbox.checked = progress[id];
-            toggleCompleted(id);
+            toggleCompleted(id); // Update styling without saving
           }
         }
       }
     }
-
-    window.onload = loadProgress;
+  
+    window.onload = loadProgress; // Load progress on startup without saving
   </script>
 </body>
 </html>
