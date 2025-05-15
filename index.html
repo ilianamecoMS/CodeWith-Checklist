@@ -35,17 +35,6 @@
       text-decoration: line-through;
       color: #888;
     }
-    button {
-      background: #0078d4;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #005a9e;
-    }
   </style>
 </head>
 <body>
@@ -119,8 +108,6 @@
     </div>
   </div>
 
-  <button onclick="saveProgress()">Save Progress</button>
-
   <script>
     function toggleCompleted(id) {
       const checkbox = document.getElementById(id);
@@ -131,17 +118,7 @@
         label.classList.remove('completed');
       }
     }
-  
-    function saveProgress() {
-      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-      const progress = {};
-      checkboxes.forEach(checkbox => {
-        progress[checkbox.id] = checkbox.checked;
-      });
-      localStorage.setItem('codeWithProgress', JSON.stringify(progress));
-      alert('Progress saved!'); // Alert only on button click
-    }
-  
+
     function loadProgress() {
       const progress = JSON.parse(localStorage.getItem('codeWithProgress'));
       if (progress) {
@@ -149,13 +126,12 @@
           const checkbox = document.getElementById(id);
           if (checkbox) {
             checkbox.checked = progress[id];
-            toggleCompleted(id); // Update UI without saving
+            toggleCompleted(id); // Update UI
           }
         }
       }
     }
-  
-    window.onload = loadProgress; // Load progress without triggering save
+
+    window.onload = loadProgress; // Load progress on startup
   </script>
-</body>
-</html>
+</script>
