@@ -35,17 +35,6 @@
       text-decoration: line-through;
       color: #888;
     }
-    button {
-      background: #0078d4;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #005a9e;
-    }
   </style>
 </head>
 <body>
@@ -54,10 +43,10 @@
 
   <div class="section">
     <h2>1. Skill Assessment</h2>
-    <p>Complete the Developer Velocity Assessment (DVA) survey to help us tailor the session to your skills.</p>
+    <p>Complete a skills assessment to help us understand your current development practices across technology, working practices and organizational enablement pillars.</p>
     <div class="checkbox-item">
       <input type="checkbox" id="survey" onchange="toggleCompleted('survey')">
-      <label for="survey">Complete the <a href="https://forms.office.com/r/example" target="_blank">DVA Skill Survey</a></label>
+      <label for="survey">Complete the <a href="https://forms.office.com/r/example" target="_blank">Technical Skills Assessment</a></label>
     </div>
   </div>
 
@@ -66,8 +55,16 @@
     <p>Based on your survey results, review the relevant resources below to build your coding and Azure skills.</p>
     <h3>Coding Skills</h3>
     <div class="checkbox-item">
-      <input type="checkbox" id="python" onchange="toggleCompleted('python')">
-      <label for="python">Learn Python basics: <a href="https://learn.microsoft.com/en-us/shows/intro-to-python-development/" target="_blank">Microsoft Learn: Python for Beginners</a></label>
+      <input type="checkbox" id="python-basics" onchange="toggleCompleted('python-basics')">
+      <label for="python-basics">Learn Python basics: <a href="https://learn.microsoft.com/en-us/shows/intro-to-python-development/" target="_blank">Microsoft Learn: Python for Beginners</a></label>
+    </div>
+    <div class="checkbox-item">
+      <input type="checkbox" id="python-intermediate" onchange="toggleCompleted('python-intermediate')">
+      <label for="python-intermediate">Intermediate Python: <a href="https://learn.microsoft.com/en-us/training/paths/python-language/" target="_blank">Python for Data Scientists</a></label>
+    </div>
+    <div class="checkbox-item">
+      <input type="checkbox" id="python-advanced" onchange="toggleCompleted('python-advanced')">
+      <label for="python-advanced">Advanced Python: <a href="https://learn.microsoft.com/en-us/training/paths/optimize-python-performance/" target="_blank">Optimize Python Performance</a></label>
     </div>
     <div class="checkbox-item">
       <input type="checkbox" id="git" onchange="toggleCompleted('git')">
@@ -76,11 +73,23 @@
     <h3>Azure Services</h3>
     <div class="checkbox-item">
       <input type="checkbox" id="azure-functions" onchange="toggleCompleted('azure-functions')">
-      <label for="azure-functions">Explore Azure Functions: <a href="hhttps://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started" target="_blank">Azure Functions Documentation</a></label>
+      <label for="azure-functions">Explore Azure Functions: <a href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started" target="_blank">Azure Functions Documentation</a></label>
     </div>
     <div class="checkbox-item">
       <input type="checkbox" id="blob-storage" onchange="toggleCompleted('blob-storage')">
       <label for="blob-storage">Learn Azure Blob Storage: <a href="https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-overview" target="_blank">Azure Blob Storage Quickstart</a></label>
+    </div>
+    <div class="checkbox-item">
+      <input type="checkbox" id="ai-search" onchange="toggleCompleted('ai-search')">
+      <label for="ai-search">Azure AI Search: <a href="https://learn.microsoft.com/en-us/azure/search/search-what-is-azure-search" target="_blank">AI Search Documentation</a></label>
+    </div>
+    <div class="checkbox-item">
+      <input type="checkbox" id="semantic-kernel" onchange="toggleCompleted('semantic-kernel')">
+      <label for="semantic-kernel">(Optional) Semantic Kernel: <a href="https://learn.microsoft.com/en-us/semantic-kernel/overview/" target="_blank">Semantic Kernel Overview</a></label>
+    </div>
+    <div class="checkbox-item">
+      <input type="checkbox" id="ai-agents" onchange="toggleCompleted('ai-agents')">
+      <label for="ai-agents">(Optional) Azure AI Agent & Foundry: <a href="https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/agent-foundry" target="_blank">AI Agent & Foundry Guide</a></label>
     </div>
   </div>
 
@@ -119,8 +128,6 @@
     </div>
   </div>
 
-  <button onclick="saveProgress()">Save Progress</button>
-
   <script>
     function toggleCompleted(id) {
       const checkbox = document.getElementById(id);
@@ -130,17 +137,6 @@
       } else {
         label.classList.remove('completed');
       }
-      saveProgress();
-    }
-
-    function saveProgress() {
-      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-      const progress = {};
-      checkboxes.forEach(checkbox => {
-        progress[checkbox.id] = checkbox.checked;
-      });
-      localStorage.setItem('codeWithProgress', JSON.stringify(progress));
-      alert('Progress saved!');
     }
 
     function loadProgress() {
@@ -150,13 +146,12 @@
           const checkbox = document.getElementById(id);
           if (checkbox) {
             checkbox.checked = progress[id];
-            toggleCompleted(id);
+            toggleCompleted(id); // Update UI
           }
         }
       }
     }
 
-    window.onload = loadProgress;
+    window.onload = loadProgress; // Load progress on startup
   </script>
-</body>
-</html>
+</script>
